@@ -1,6 +1,7 @@
 
 # Ignore all cache files and directories
 **/*cache*
+**/*egg*/*
 notebook
 
 # Ignore all log files and directories

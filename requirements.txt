@@ -1,0 +1,5 @@
+beautifulsoup4==4.12.3
+fake-useragent==1.5.1
+selenium==4.9.1
+pydantic==2.7.1
+webdriver-manager==4.0.1

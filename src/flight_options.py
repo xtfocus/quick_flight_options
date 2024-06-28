@@ -1,3 +1,4 @@
+import argparse
 from datetime import datetime, timedelta
 
 from bs4 import BeautifulSoup
@@ -57,7 +58,9 @@ def search_flights(url):
     user_agent = ua.random
 
     options.add_argument(f"--user-agent={user_agent}")
-    options.add_argument("--headless")
+    # options.add_argument("--headless")
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    # options.add_experimental_option("useAutomationExtension", False)
 
     driver = webdriver.Firefox(
         options=options, service=Service(GeckoDriverManager().install())
@@ -65,9 +68,10 @@ def search_flights(url):
 
     driver.get(url)
     element = None
+    source = None
 
     try:
-        wait = WebDriverWait(driver, 30)  # Wait for up to 10 seconds
+        wait = WebDriverWait(driver, 10)  # Wait for up to 10 seconds
         element = wait.until(
             EC.presence_of_element_located(
                 (By.CSS_SELECTOR, 'button[class*="TicketStub"]')
@@ -83,14 +87,70 @@ def search_flights(url):
         # Close the WebDriver
         driver.quit()
 
-    if element:
-        soup = BeautifulSoup(source)
+    if element and source:
+        soup = BeautifulSoup(source, "html.parser")
 
         tops = soup.select_one('div[class*="TabsWithSparkle"]').select("button")
         tops_info = [top.select("div") for top in tops]
         tops_info = [[div.text for div in top] for top in tops]
 
         return tops_info
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Search for flights.")
+    parser.add_argument(
+        "--departure-date", type=str, help="Departure date in YYYY-MM-DD format"
+    )
+    parser.add_argument(
+        "--return-date",
+        type=str,
+        nargs="?",
+        default=None,
+        help="Return date in YYYY-MM-DD format",
+    )
+    parser.add_argument(
+        "--adults", type=int, help="Number of adults", required=True, default=1
+    )
+    parser.add_argument(
+        "--children", type=int, help="Number of children", required=False, default=0
+    )
+    parser.add_argument(
+        "--cabin-class",
+        type=str,
+        help="Cabin class (economy, premiumeconomy, business, first)",
+        required=True,
+        default="economy",
+    )
+    parser.add_argument(
+        "--prefer-direct",
+        type=bool,
+        help="Preference for direct flights",
+        required=False,
+        default="false",
+    )
+
+    args = parser.parse_args()
+
+    try:
+        departure_date = datetime.strptime(args.departure_date, "%Y-%m-%d")
+        return_date = (
+            datetime.strptime(args.return_date, "%Y-%m-%d")
+            if args.return_date
+            else None
+        )
+        search_options = FlightSearchOptions(
+            departure_date=departure_date,
+            return_date=return_date,
+            adults=args.adults,
+            children=args.children,
+            cabin_class=args.cabin_class,
+            prefer_direct=args.prefer_direct,
+        )
+        url = create_skyscanner_url(search_options)
+        print(search_flights(url))
+    except ValueError as e:
+        print(e)
 
 
 if __name__ == "__main__":
