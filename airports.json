@@ -1,0 +1,120 @@
+{
+    "SIN": {
+        "name": "Singapore Changi Airport",
+        "city": "Singapore",
+        "country": "Singapore"
+    },
+    "KUL": {
+        "name": "Kuala Lumpur International Airport",
+        "city": "Kuala Lumpur",
+        "country": "Malaysia"
+    },
+    "CGK": {
+        "name": "Soekarno–Hatta International Airport",
+        "city": "Jakarta",
+        "country": "Indonesia"
+    },
+    "BKK": {"name": "Suvarnabhumi Airport", "city": "Bangkok", "country": "Thailand"},
+    "DMK": {
+        "name": "Don Mueang International Airport",
+        "city": "Bangkok",
+        "country": "Thailand"
+    },
+    "HAN": {
+        "name": "Noi Bai International Airport",
+        "city": "Hanoi",
+        "country": "Vietnam"
+    },
+    "SGN": {
+        "name": "Tan Son Nhat International Airport",
+        "city": "Ho Chi Minh City",
+        "country": "Vietnam"
+    },
+    "MNL": {
+        "name": "Ninoy Aquino International Airport",
+        "city": "Manila",
+        "country": "Philippines"
+    },
+    "CEB": {
+        "name": "Mactan-Cebu International Airport",
+        "city": "Cebu",
+        "country": "Philippines"
+    },
+    "DPS": {
+        "name": "Ngurah Rai International Airport",
+        "city": "Denpasar",
+        "country": "Indonesia"
+    },
+    "SUB": {
+        "name": "Juanda International Airport",
+        "city": "Surabaya",
+        "country": "Indonesia"
+    },
+    "LPQ": {
+        "name": "Luang Prabang International Airport",
+        "city": "Luang Prabang",
+        "country": "Laos"
+    },
+    "PNH": {
+        "name": "Phnom Penh International Airport",
+        "city": "Phnom Penh",
+        "country": "Cambodia"
+    },
+    "VTE": {
+        "name": "Wattay International Airport",
+        "city": "Vientiane",
+        "country": "Laos"
+    },
+    "RGN": {
+        "name": "Yangon International Airport",
+        "city": "Yangon",
+        "country": "Myanmar"
+    },
+    "CNX": {
+        "name": "Chiang Mai International Airport",
+        "city": "Chiang Mai",
+        "country": "Thailand"
+    },
+    "HKT": {
+        "name": "Phuket International Airport",
+        "city": "Phuket",
+        "country": "Thailand"
+    },
+    "PEN": {
+        "name": "Penang International Airport",
+        "city": "Penang",
+        "country": "Malaysia"
+    },
+    "LGK": {
+        "name": "Langkawi International Airport",
+        "city": "Langkawi",
+        "country": "Malaysia"
+    },
+    "MYY": {"name": "Miri Airport", "city": "Miri", "country": "Malaysia"},
+    "BKI": {
+        "name": "Kota Kinabalu International Airport",
+        "city": "Kota Kinabalu",
+        "country": "Malaysia"
+    },
+    "KCH": {
+        "name": "Kuching International Airport",
+        "city": "Kuching",
+        "country": "Malaysia"
+    },
+    "JHB": {
+        "name": "Senai International Airport",
+        "city": "Johor Bahru",
+        "country": "Malaysia"
+    },
+    "KNO": {
+        "name": "Kualanamu International Airport",
+        "city": "Medan",
+        "country": "Indonesia"
+    },
+    "BWN": {
+        "name": "Brunei International Airport",
+        "city": "Bandar Seri Begawan",
+        "country": "Brunei"
+    }
+
+}

@@ -1,0 +1,8 @@
+
+# Ignore all cache files and directories
+**/*cache*
+notebook
+
+# Ignore all log files and directories
+**/log/
+**/*.log
