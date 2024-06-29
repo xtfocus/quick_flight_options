@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.firefox import GeckoDriverManager
 
-from models import AirportCode, CabinClass, FlightSearchOptions
+from skyscan.models import AirportCode, CabinClass, FlightSearchOptions
 
 
 def create_skyscanner_url(options: FlightSearchOptions) -> str:
@@ -58,9 +58,8 @@ def search_flights(url):
     user_agent = ua.random
 
     options.add_argument(f"--user-agent={user_agent}")
-    # options.add_argument("--headless")
+    options.add_argument("--headless")  # Doesn't show browser
     options.add_argument("--disable-blink-features=AutomationControlled")
-    # options.add_experimental_option("useAutomationExtension", False)
 
     driver = webdriver.Firefox(
         options=options, service=Service(GeckoDriverManager().install())

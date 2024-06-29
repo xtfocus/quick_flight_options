@@ -1,12 +1,12 @@
 import json
 from datetime import date, datetime, timedelta
 from enum import Enum
-from importlib import resources
 from typing import Optional
 
+from pkg_resources import resource_filename
 from pydantic import BaseModel, Field, ValidationInfo, field_validator
 
-with resources.open_text("skyscan", "airports.json") as fid:
+with open(resource_filename("skyscan", "data/airports.json")) as fid:
     SOUTHEAST_ASIA_AIRPORTS = json.load(fid)
 
 # with open("airports.json") as f:
