@@ -25,6 +25,11 @@
         "city": "Hanoi",
         "country": "Vietnam"
     },
+    "DAD": {
+        "name": "Da Nang International Airport",
+        "city": "Da Nang",
+        "country": "Vietnam"
+    },
     "SGN": {
         "name": "Tan Son Nhat International Airport",
         "city": "Ho Chi Minh City",

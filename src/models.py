@@ -1,12 +1,16 @@
 import json
 from datetime import date, datetime, timedelta
 from enum import Enum
+from importlib import resources
 from typing import Optional
 
 from pydantic import BaseModel, Field, ValidationInfo, field_validator
 
-with open("airports.json", "r") as f:
-    SOUTHEAST_ASIA_AIRPORTS = json.load(f)
+with resources.open_text("skyscan", "airports.json") as fid:
+    SOUTHEAST_ASIA_AIRPORTS = json.load(fid)
+
+# with open("airports.json") as f:
+#    SOUTHEAST_ASIA_AIRPORTS = json.load(f)
 
 
 class DepartureDate(BaseModel):
@@ -56,6 +60,8 @@ class CabinClass(str, Enum):
 
 
 class FlightSearchOptions(BaseModel):
+    from_airport: AirportCode = Field(description="Departure airport")
+    to_airport: AirportCode = Field(description="Landing airport")
     departure_date: datetime
     return_date: Optional[datetime] = None
     adults: int = Field(..., gt=0, description="Number of adult passengers")

@@ -11,13 +11,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.firefox import GeckoDriverManager
 
-from models import FlightSearchOptions
+from models import AirportCode, CabinClass, FlightSearchOptions
 
 
 def create_skyscanner_url(options: FlightSearchOptions) -> str:
     base_url = "https://www.skyscanner.com.vn/transport/flights/"
-    departure_airport = "han"
-    destination_airport = "dad"
+    departure_airport = options.from_airport.airport_code
+    destination_airport = options.to_airport.airport_code
 
     # Format the dates to match the expected format (yymmdd)
     formatted_departure_date = options.departure_date.strftime("%y%m%d")
@@ -99,9 +99,25 @@ def search_flights(url):
 
 def main():
     parser = argparse.ArgumentParser(description="Search for flights.")
+
+    parser.add_argument(
+        "--from-airport",
+        type=str,
+        help="Departure airport",
+        required=True,
+    )
+
+    parser.add_argument(
+        "--to-airport",
+        type=str,
+        help="Landing airport",
+        required=True,
+    )
+
     parser.add_argument(
         "--departure-date", type=str, help="Departure date in YYYY-MM-DD format"
     )
+
     parser.add_argument(
         "--return-date",
         type=str,
@@ -109,19 +125,23 @@ def main():
         default=None,
         help="Return date in YYYY-MM-DD format",
     )
+
     parser.add_argument(
         "--adults", type=int, help="Number of adults", required=True, default=1
     )
+
     parser.add_argument(
         "--children", type=int, help="Number of children", required=False, default=0
     )
+
     parser.add_argument(
         "--cabin-class",
         type=str,
         help="Cabin class (economy, premiumeconomy, business, first)",
         required=True,
         default="economy",
-    )
+    ),
+
     parser.add_argument(
         "--prefer-direct",
         type=bool,
@@ -140,6 +160,8 @@ def main():
             else None
         )
         search_options = FlightSearchOptions(
+            from_airport=AirportCode(airport_code=args.from_airport),
+            to_airport=AirportCode(airport_code=args.to_airport),
             departure_date=departure_date,
             return_date=return_date,
             adults=args.adults,
@@ -160,12 +182,17 @@ if __name__ == "__main__":
         # Set the return date as 2 days after the departure date
         return_date = departure_date + timedelta(days=2)
 
+        from_airport = "han"
+        to_airport = "dad"
+
         search_options = FlightSearchOptions(
+            from_airport=AirportCode(airport_code=from_airport),
+            to_airport=AirportCode(airport_code=to_airport),
             departure_date=departure_date,
             return_date=return_date,
             adults=1,
             children=0,
-            cabin_class="economy",
+            cabin_class=CabinClass("economy"),
             prefer_direct=True,
         )
         print(search_options)
