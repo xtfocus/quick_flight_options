@@ -11,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.firefox import GeckoDriverManager
 
-from skyscan.models import AirportCode, CabinClass, FlightSearchOptions
+from flyfare.models import AirportCode, CabinClass, FlightSearchOptions
 
 
 def create_skyscanner_url(options: FlightSearchOptions) -> str:

@@ -3,7 +3,7 @@ requires = ["setuptools==69.5.1"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "skyscan"
+name = "flyfare"
 description = "Best flight options"
 
 authors = [
@@ -27,5 +27,5 @@ version = "0.1.0"
 
 
 [project.scripts]
-skyscan = "skyscan.flight_options:main"
+flyfare = "flyfare.flight_options:main"
 

@@ -6,7 +6,7 @@ from typing import Optional
 from pkg_resources import resource_filename
 from pydantic import BaseModel, Field, ValidationInfo, field_validator
 
-with open(resource_filename("skyscan", "data/airports.json")) as fid:
+with open(resource_filename("flyfare", "data/airports.json")) as fid:
     SOUTHEAST_ASIA_AIRPORTS = json.load(fid)
 
 # with open("airports.json") as f:
