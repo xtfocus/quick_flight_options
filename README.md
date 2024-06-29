@@ -6,10 +6,10 @@ This is created mainly to test some AI agent ideas. Don't take it too serious.
 
 Usage:
 
-1. Install the module locally
+1. Install
 
 ```bash
-pip install -e .
+pip install git+https://github.com/xtfocus/quick_flight_options.git
 ```
 
 2. cli
